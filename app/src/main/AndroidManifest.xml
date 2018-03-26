@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zuofa.summer">
+
+    <!-- 允许联网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取wifi网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 获取sd卡写的权限，用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许读取手机状态 用于创建BmobInstallation -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- if you want to load images from a file OR from the internet -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:name=".application.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/school"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="cc.dagger.photopicker.MultiImageSelectorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NO_ACTIONBAR" />
+        <activity
+            android:name="cc.dagger.photopicker.PhotoPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NO_ACTIONBAR" />
+        <activity android:name=".MainActivity" />
+
+        <!-- 闪屏页 -->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/ThemeSplash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 引导页 -->
+        <activity android:name=".ui.GuideActivity" />
+        <!-- 登陆页 -->
+        <activity android:name=".ui.LoginActivity"
+            android:launchMode="singleTask"/>
+        <!-- 注册页 -->
+        <activity
+            android:name=".ui.RegisterActivity"
+            android:launchMode="singleTask"
+            android:label="注册" />
+
+        <!-- 查看用户信息 -->
+        <activity android:name=".ui.UserInfoActivity" />
+
+        <!-- 个人信息页 -->
+        <activity
+            android:name=".ui.InformationAcvtivity"
+            android:label="个人信息" />
+
+        <!-- 联系我们 -->
+        <activity
+            android:name=".ui.ConnectActivity"
+            android:label="联系我们" />
+
+        <!-- 关于我们 -->
+        <activity
+            android:name=".ui.AboutActivity"
+            android:label="关于我们" />
+
+        <!-- 生成二维码 -->
+        <activity
+            android:name=".ui.RQcodeActivity"
+            android:label="二维码" />
+
+        <!-- 用户评论具体页面 -->
+        <activity
+            android:name=".ui.CommentActivity"
+            android:label="评论" />
+
+        <!-- 发微博 -->
+        <activity
+            android:name=".ui.SendBlogActivity"
+            android:label="发微博" />
+
+        <!-- 招聘网页详情页面 -->
+        <activity android:name=".ui.WebViewActivity" />
+
+        <meta-data
+            android:name="RONG_CLOUD_APP_KEY"
+            android:value="c9kqb3rdce51j" />
+        <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="5e25f603e8b0e04beaa9d940ab45dbea" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.zuofa.summer.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
+        <!--
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.zuofa.summer.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+        -->
+        <!-- 会话列表 -->
+        <activity
+            android:name=".ui.ConversationListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="io.rong.fast"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+        <!-- 会话界面 -->
+        <activity
+            android:name=".ui.ConversationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.zuofa.summer"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service.UpLoadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ui.ProvinceActivity" />
+        <activity android:name=".ui.SchoolActivity" />
+        <activity android:name=".ui.SelectSchoolActivity" />
+        <activity android:name=".ui.SelectProvinceActivity"></activity>
+    </application>
+
+</manifest>
